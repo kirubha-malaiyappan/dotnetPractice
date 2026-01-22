@@ -6,6 +6,12 @@ namespace Oops
     {
         public string Species { get; protected set; }
         public string Name { get; set; }
+        public Animal(string name, string species)
+        {
+            Name = name;
+            Species = species;
+
+        }
 
         public virtual void MakeSound()
         {
@@ -17,10 +23,12 @@ namespace Oops
     public class Dog : Animal
 
     {
-        public Dog(string name)
+        public int aid;
+        public Dog(string name, string species, int aid)
+            : base(name, species)
         {
-            Name = name;
-            Species = "mammals";
+            //Name = name;
+            //Species = "mammals";
         }
         public sealed override void MakeSound()
         {
@@ -34,7 +42,7 @@ namespace Oops
     {
         static void Main(string[] args)
         {
-            Animal dog = new Dog("Puppy");
+            Animal dog = new Dog("Puppy", "Mammals", 1);
 
             dog.MakeSound();
             Console.WriteLine(dog.Species);
