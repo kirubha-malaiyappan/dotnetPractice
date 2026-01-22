@@ -1,57 +1,132 @@
-﻿// See https://aka.ms/new-console-template for more information
-namespace Oops
-
+﻿
+namespace assesment
 {
-    public abstract class Animal
+
+
+    //Interface
+    interface IWorker
     {
-        public string Species { get; protected set; }
+        void Work();
+    }
+
+    //Abstract class
+    abstract class Person
+    {
+        // Field
+        protected int age;
+
+        // Property (Encapsulation)
         public string Name { get; set; }
-        public abstract string Sound { get; }
-        public Animal(string name, string species)
+
+        // Constructor
+        public Person(string name, int age)
         {
             Name = name;
-            Species = species;
-
+            this.age = age;
         }
 
-        public virtual void MakeSound()
+        // Abstract method 
+        public abstract void Introduce();
+
+        // Concrete method
+        public void ShowAge()
         {
-            Console.WriteLine("Animal SOunds");
+            Console.WriteLine($"Age: {age}");
         }
-
     }
 
-    public class Dog : Animal
-
+    //Inheritance
+    class Employee : Person, IWorker
     {
-        public int aid;
-        public override string Sound => "Woof";
-        public Dog(string name, string species, int aid)
-            : base(name, species)
+        // Property
+        public double Salary { get; private set; }
+
+        // Constructor
+        public Employee(string name, int age, double salary)
+            : base(name, age)
         {
-            //Name = name;
-            //Species = "mammals";
+            Salary = salary;
         }
-        public sealed override void MakeSound()
+
+        // Polymorphism (method override)
+        public override void Introduce()
         {
-            Console.WriteLine("Barks");
+            Console.WriteLine($"Hi, I'm {Name} and I am an employee.");
+        }
 
+        // Interface method implementation
+        public void Work()
+        {
+            Console.WriteLine("Employee is working in backend");
+        }
 
+        // Method
+        public void GiveRaise(double amount)
+        {
+            Salary += amount;
         }
     }
 
-    public class Practice
+
+    class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            Animal dog = new Dog("Puppy", "Mammals", 1);
+            //Data Types and Variables
+            int number = 10;
+            double price = 99.99;
+            bool isActive = true;
+            string message = "hi";
 
-            dog.MakeSound();
-            Console.WriteLine(dog.Species);
-            Console.WriteLine(dog.Name);
-            Console.WriteLine(dog.Sound);
+            //Operators
+            int sum = number + 5;
+            bool isGreater = sum > 10;
+
+            //Conditional Statement
+            if (isGreater)
+            {
+                Console.WriteLine("greater than 10");
+            }
+            else
+            {
+                Console.WriteLine("less than 10");
+            }
+
+            //Loop
+            for (int i = 1; i <= 3; i++)
+            {
+                Console.WriteLine(i);
+            }
+
+
+            //Object
+            Employee emp = new Employee("Kiru", 21, 50000);
+
+            //Method calling
+            emp.Introduce();
+            
+
+            emp.GiveRaise(5000);
+            Console.WriteLine($"New Salary: {emp.Salary}");
+
+            //Polymorphism
+            Person personRef = emp;
+            personRef.Introduce();
+
+            //Exception Handling
+            int x = 5;
+            int y = 0;
+
+            try
+            {
+                int result = x / y;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error occurred: " + ex.Message);
+            }
+
+            Console.WriteLine("Program finished successfully.");
         }
-
     }
-
 }
