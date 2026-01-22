@@ -6,6 +6,7 @@ namespace Oops
     {
         public string Species { get; protected set; }
         public string Name { get; set; }
+        public abstract string Sound { get; }
         public Animal(string name, string species)
         {
             Name = name;
@@ -24,6 +25,7 @@ namespace Oops
 
     {
         public int aid;
+        public override string Sound => "Woof";
         public Dog(string name, string species, int aid)
             : base(name, species)
         {
@@ -47,6 +49,7 @@ namespace Oops
             dog.MakeSound();
             Console.WriteLine(dog.Species);
             Console.WriteLine(dog.Name);
+            Console.WriteLine(dog.Sound);
         }
 
     }
