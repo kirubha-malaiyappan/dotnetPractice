@@ -1,47 +1,132 @@
-﻿using System.Globalization;
-
-internal class Program
+﻿
+namespace assesment
 {
-     public static void Main(string[] args)
+
+
+    //Interface
+    interface IWorker
     {
-        string[] arguments = Environment.GetCommandLineArgs();
-        Console.WriteLine("GetCommandLineArgs: {0}",arguments);
-        string s = "this is kirubha malaiappan.";
-        TextInfo currentTextInfo = CultureInfo.CurrentCulture.TextInfo;
-
-        
-        Console.WriteLine(s.ToUpper());
-        string result = currentTextInfo.ToTitleCase(s);
-        Console.WriteLine();
-        Console.WriteLine(result);
-        InterpolationAndLiteral();
-
-
+        void Work();
     }
 
-    internal static void Print(string s)
+    //Abstract class
+    abstract class Person
     {
-        for (int i = 0; i < s.Length; i++)
+        // Field
+        protected int age;
+
+        // Property (Encapsulation)
+        public string Name { get; set; }
+
+        // Constructor
+        public Person(string name, int age)
         {
-            Console.WriteLine(s[i]); //string considered as an array
+            Name = name;
+            this.age = age;
+        }
+
+        // Abstract method 
+        public abstract void Introduce();
+
+        // Concrete method
+        public void ShowAge()
+        {
+            Console.WriteLine($"Age: {age}");
         }
     }
 
-    internal static void Formatting(string s)
+    //Inheritance
+    class Employee : Person, IWorker
     {
-        string firstName = "Kirubha";
-        string lastName = " Malaiappan";
-        Console.WriteLine("My name is {0} {1}", firstName, lastName);
-        Console.WriteLine($"My name is {firstName} {lastName}");
+        // Property
+        public double Salary { get; private set; }
 
+        // Constructor
+        public Employee(string name, int age, double salary)
+            : base(name, age)
+        {
+            Salary = salary;
+        }
+
+        // Polymorphism (method override)
+        public override void Introduce()
+        {
+            Console.WriteLine($"Hi, I'm {Name} and I am an employee.");
+        }
+
+        // Interface method implementation
+        public void Work()
+        {
+            Console.WriteLine("Employee is working in backend");
+        }
+
+        // Method
+        public void GiveRaise(double amount)
+        {
+            Salary += amount;
+        }
     }
-    internal static void InterpolationAndLiteral()
+
+
+    class Program
     {
-        string firstName = "Kirubha";
-        string path = @$"c:\{firstName}\""Users""";//double quotes in stringLi
-        Console.WriteLine(path);
+        static void Main()
+        {
+            //Data Types and Variables
+            int number = 10;
+            double price = 99.99;
+            bool isActive = true;
+            string message = "hi";
 
+            //Operators
+            int sum = number + 5;
+            bool isGreater = sum > 10;
+
+            //Conditional Statement
+            if (isGreater)
+            {
+                Console.WriteLine("greater than 10");
+            }
+            else
+            {
+                Console.WriteLine("less than 10");
+            }
+
+            //Loop
+            for (int i = 1; i <= 3; i++)
+            {
+                Console.WriteLine(i);
+            }
+
+
+            //Object
+            Employee emp = new Employee("Kiru", 21, 50000);
+
+            //Method calling
+            emp.Introduce();
+
+
+            emp.GiveRaise(5000);
+            Console.WriteLine($"New Salary: {emp.Salary}");
+
+            //Polymorphism
+            Person personRef = emp;
+            personRef.Introduce();
+
+            //Exception Handling
+            int x = 5;
+            int y = 0;
+
+            try
+            {
+                int result = x / y;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error occurred: " + ex.Message);
+            }
+
+            Console.WriteLine("Program finished successfully.");
+        }
     }
-
-
 }
