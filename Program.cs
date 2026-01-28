@@ -1,36 +1,58 @@
-﻿
-using System;
+﻿using System.Globalization;
 
-public class Geeks
+internal class Program
 {
-    static public void Main()
+    public static void Main(string[] args)
     {
+        //string[] arguments = Environment.GetCommandLineArgs();
+        //Console.WriteLine("GetCommandLineArgs: {0}", arguments);
+        //string s = "this is kirubha malaiappan.";
+        //TextInfo currentTextInfo = CultureInfo.CurrentCulture.TextInfo;
 
-        var t1 = Tuple.Create("hii");
 
-        Console.WriteLine("1st element of t1 : " + t1.Item1);
-        Console.WriteLine();
+        //Console.WriteLine(s.ToUpper());
+        //string result = currentTextInfo.ToTitleCase(s);
+        //Console.WriteLine();
+        //Console.WriteLine(result);
+        //InterpolationAndLiteral();
+        Concatenation();
 
-        // 4-tuple
-        // Using Create Method
-        var t2 = Tuple.Create(12, 30, 40, 50);
 
-        =
-        // AC=ccesing using Item property
-        Console.WriteLine("1st element of t2: " + t2.Item1);
-        Console.WriteLine();
-
-        //  8-tuple
-        // Using Create Method
-        var t3 = Tuple.Create(13, "Geeks",
-              67, 89.90, 'g', 39939, "geek", 10);
-
-        // Accessing the element of Tuple
-        // Using Item property
-        // And print the 8th element of tuple
-        // using Rest property
-        Console.WriteLine("1st element of t3: " + t3.Item1);
-        Console.WriteLine("2nd lement of t3: " + t3.Item2);
-        Console.WriteLine("8th element of t3: " + t3.Rest);
     }
+
+    internal static void Print(string s)
+    {
+        for (int i = 0; i < s.Length; i++)
+        {
+            Console.WriteLine(s[i]); //string considered as an array
+        }
+    }
+
+    internal static void Formatting(string s)
+    {
+        string firstName = "Kirubha";
+        string lastName = " Malaiappan";
+        Console.WriteLine("My name is {0} {1}", firstName, lastName);
+        Console.WriteLine($"My name is {firstName} {lastName}");
+
+    }
+    internal static void InterpolationAndLiteral()
+    {
+        string firstName = "Kirubha";
+        string path = @$"c:\{firstName}\""Users""";//double quotes in stringLi
+        Console.WriteLine(path);
+
+    }
+
+    internal static void Concatenation()
+    {
+        char[] arr = new char[] { 'A', 'B', 'C' };
+        String[] array = arr.Select(x => x.ToString()).ToArray();
+        Console.Write(String.Join(",", array));
+
+        string val = "Anu,Dhanu,Kasthu,Gundoos";
+        val.Split(',');
+    }
+
+
 }
