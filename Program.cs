@@ -1,132 +1,36 @@
 ﻿
-namespace assesment
+using System;
+
+public class Geeks
 {
-
-
-    //Interface
-    interface IWorker
+    static public void Main()
     {
-        void Work();
-    }
 
-    //Abstract class
-    abstract class Person
-    {
-        // Field
-        protected int age;
+        var t1 = Tuple.Create("hii");
 
-        // Property (Encapsulation)
-        public string Name { get; set; }
+        Console.WriteLine("1st element of t1 : " + t1.Item1);
+        Console.WriteLine();
 
-        // Constructor
-        public Person(string name, int age)
-        {
-            Name = name;
-            this.age = age;
-        }
+        // 4-tuple
+        // Using Create Method
+        var t2 = Tuple.Create(12, 30, 40, 50);
 
-        // Abstract method 
-        public abstract void Introduce();
+        =
+        // AC=ccesing using Item property
+        Console.WriteLine("1st element of t2: " + t2.Item1);
+        Console.WriteLine();
 
-        // Concrete method
-        public void ShowAge()
-        {
-            Console.WriteLine($"Age: {age}");
-        }
-    }
+        //  8-tuple
+        // Using Create Method
+        var t3 = Tuple.Create(13, "Geeks",
+              67, 89.90, 'g', 39939, "geek", 10);
 
-    //Inheritance
-    class Employee : Person, IWorker
-    {
-        // Property
-        public double Salary { get; private set; }
-
-        // Constructor
-        public Employee(string name, int age, double salary)
-            : base(name, age)
-        {
-            Salary = salary;
-        }
-
-        // Polymorphism (method override)
-        public override void Introduce()
-        {
-            Console.WriteLine($"Hi, I'm {Name} and I am an employee.");
-        }
-
-        // Interface method implementation
-        public void Work()
-        {
-            Console.WriteLine("Employee is working in backend");
-        }
-
-        // Method
-        public void GiveRaise(double amount)
-        {
-            Salary += amount;
-        }
-    }
-
-
-    class Program
-    {
-        static void Main()
-        {
-            //Data Types and Variables
-            int number = 10;
-            double price = 99.99;
-            bool isActive = true;
-            string message = "hi";
-
-            //Operators
-            int sum = number + 5;
-            bool isGreater = sum > 10;
-
-            //Conditional Statement
-            if (isGreater)
-            {
-                Console.WriteLine("greater than 10");
-            }
-            else
-            {
-                Console.WriteLine("less than 10");
-            }
-
-            //Loop
-            for (int i = 1; i <= 3; i++)
-            {
-                Console.WriteLine(i);
-            }
-
-
-            //Object
-            Employee emp = new Employee("Kiru", 21, 50000);
-
-            //Method calling
-            emp.Introduce();
-
-
-            emp.GiveRaise(5000);
-            Console.WriteLine($"New Salary: {emp.Salary}");
-
-            //Polymorphism
-            Person personRef = emp;
-            personRef.Introduce();
-
-            //Exception Handling
-            int x = 5;
-            int y = 0;
-
-            try
-            {
-                int result = x / y;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error occurred: " + ex.Message);
-            }
-
-            Console.WriteLine("Program finished successfully.");
-        }
+        // Accessing the element of Tuple
+        // Using Item property
+        // And print the 8th element of tuple
+        // using Rest property
+        Console.WriteLine("1st element of t3: " + t3.Item1);
+        Console.WriteLine("2nd lement of t3: " + t3.Item2);
+        Console.WriteLine("8th element of t3: " + t3.Rest);
     }
 }
